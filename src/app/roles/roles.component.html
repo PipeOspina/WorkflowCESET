@@ -24,3 +24,15 @@
   <button mat-raised-button color="primary" [disabled]="!isCompleted()">Entrar</button>
   <button mat-raised-button>Registrarse</button>
 </div>
+
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <input type="text" (focus)="listItems" (blur)="blur = true" placeholder="Assignee" aria-label="Assignee" matInput [formControl]="myControl" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+        {{option.name}}
+      </mat-option>
+    </mat-autocomplete>
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+</form>

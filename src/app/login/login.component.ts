@@ -17,6 +17,11 @@ export class LoginComponent implements OnInit {
   constructor() { }
 
   hide = true;
+  blur = false;
+
+  color() {
+    return this.password.hasError('required') && this.blur ? 'warn' : ''; 
+  }
 
   resolved() {
     this.captchaResolved = true;

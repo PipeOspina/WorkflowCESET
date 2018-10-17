@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
+
 @Component({
   selector: 'app-roles',
   templateUrl: './roles.component.html',
@@ -23,11 +26,6 @@ export class RolesComponent implements OnInit {
     this.captchaResolved = true;
   }
 
-  color() {
-    console.log(this.blur);
-    return this.password.hasError('required') && this.blur ? 'warn' : ''; 
-  }
-
   isCompleted() {
     return !this.email.hasError('required') && !this.email.hasError('email') && !this.password.hasError('required') && this.captchaResolved;
   }
@@ -43,7 +41,37 @@ export class RolesComponent implements OnInit {
       '';
   }
 
+  myControl = new FormControl();
+  options: User[] = [
+    {name: 'Mary'},
+    {name: 'Shelley'},
+    {name: 'Igor'}
+  ];
+  filteredOptions: Observable<User[]>;
+
   ngOnInit() {
+    
   }
 
+  listItems() {
+    this.filteredOptions = this.myControl.valueChanges
+      .pipe(
+        startWith<string | User>(''),
+        map(value => typeof value === 'string' ? value : value.name),
+        map(name => name ? this._filter(name) : this.options.slice())
+      );
+  }
+
+  displayFn(user?: User): string | undefined {
+    return user ? user.name : undefined;
+  }
+
+  private _filter(name: string): User[] {
+    const filterValue = name.toLowerCase();
+    return this.options.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
+  }
+}
+
+export interface User {
+  name: string;
 }

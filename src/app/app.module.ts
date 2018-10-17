@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ViewEncapsulation } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatCardModule, MatCheckboxModule, MatDatepickerModule, MatFormFieldModule, MatNativeDateModule, MatInputModule, MatSelect, MatSelectModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatCardModule, MatCheckboxModule, MatDatepickerModule, MatFormFieldModule, MatNativeDateModule, MatInputModule, MatSelect, MatSelectModule, MatAutocompleteModule, MatOptionModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -27,7 +27,9 @@ import { RolesComponent } from './roles/roles.component';
     MatButtonModule,
     RecaptchaModule.forRoot(),
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatAutocompleteModule,
+    MatOptionModule
   ],
   providers: [],
   bootstrap: [AppComponent],
