@@ -7,11 +7,13 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RecaptchaModule } from 'ng-recaptcha';
+import { RolesComponent } from './roles/roles.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    RolesComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +25,9 @@ import { RecaptchaModule } from 'ng-recaptcha';
     FormsModule,
     MatIconModule,
     MatButtonModule,
-    RecaptchaModule.forRoot()
+    RecaptchaModule.forRoot(),
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent],
