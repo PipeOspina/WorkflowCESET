@@ -27,7 +27,7 @@
 
 <form class="example-form">
   <mat-form-field class="example-full-width">
-    <input type="text" (focus)="listItems" (blur)="blur = true" placeholder="Assignee" aria-label="Assignee" matInput [formControl]="myControl" [matAutocomplete]="auto">
+    <input type="text" (blur)="blur = true" placeholder="Assignee" aria-label="Assignee" matInput [formControl]="myControl" [matAutocomplete]="auto">
     <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
       <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
         {{option.name}}

@@ -50,16 +50,17 @@ export class RolesComponent implements OnInit {
   filteredOptions: Observable<User[]>;
 
   ngOnInit() {
-    
-  }
-
-  listItems() {
     this.filteredOptions = this.myControl.valueChanges
       .pipe(
         startWith<string | User>(''),
         map(value => typeof value === 'string' ? value : value.name),
-        map(name => name ? this._filter(name) : this.options.slice())
+        map(name => name ? this._filter(name) : [])
       );
+      console.log(this.options.slice());
+  }
+
+  listItems() {
+    
   }
 
   displayFn(user?: User): string | undefined {
