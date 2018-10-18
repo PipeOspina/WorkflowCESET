@@ -43,9 +43,12 @@ export class RolesComponent implements OnInit {
 
   myControl = new FormControl();
   options: User[] = [
-    {name: 'Mary'},
-    {name: 'Shelley'},
-    {name: 'Igor'}
+    {name: 'Mary',
+      last: 'Presley'},
+    {name: 'Shelley',
+  last: 'Mar'},
+    {name: 'Igor',
+  last: 'Marcela'}
   ];
   filteredOptions: Observable<User[]>;
 
@@ -64,15 +67,16 @@ export class RolesComponent implements OnInit {
   }
 
   displayFn(user?: User): string | undefined {
-    return user ? user.name : undefined;
+    return user ? user.last : undefined;
   }
 
   private _filter(name: string): User[] {
     const filterValue = name.toLowerCase();
-    return this.options.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
+    return this.options.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0 || option.last.toLowerCase().indexOf(filterValue) === 0 || option.last.toLowerCase().includes(filterValue));
   }
 }
 
 export interface User {
   name: string;
+  last: string;
 }
